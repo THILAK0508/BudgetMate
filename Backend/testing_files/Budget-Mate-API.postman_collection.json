@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "budget-mate-api-collection",
+		"name": "Budget-Mate API",
+		"description": "Complete API collection for Budget-Mate application testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/health",
+					"host": ["{{base_url}}"],
+					"path": ["api", "health"]
+				}
+			}
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "User Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/signup",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "signup"]
+						}
+					}
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/profile",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "profile"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Budgets",
+			"item": [
+				{
+					"name": "Create Budget",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Shopping Budget\",\n  \"amount\": 1000,\n  \"category\": \"Shopping\",\n  \"icon\": \"🛍️\",\n  \"color\": \"pink\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/budgets",
+							"host": ["{{base_url}}"],
+							"path": ["api", "budgets"]
+						}
+					}
+				},
+				{
+					"name": "Create Another Budget",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Food Budget\",\n  \"amount\": 500,\n  \"category\": \"Food\",\n  \"icon\": \"🍕\",\n  \"color\": \"green\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/budgets",
+							"host": ["{{base_url}}"],
+							"path": ["api", "budgets"]
+						}
+					}
+				},
+				{
+					"name": "Get All Budgets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/budgets",
+							"host": ["{{base_url}}"],
+							"path": ["api", "budgets"]
+						}
+					}
+				},
+				{
+					"name": "Get Budget Summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/budgets/summary/overview",
+							"host": ["{{base_url}}"],
+							"path": ["api", "budgets", "summary", "overview"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Expenses",
+			"item": [
+				{
+					"name": "Create Expense",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Grocery Shopping\",\n  \"amount\": 150,\n  \"category\": \"Food\",\n  \"date\": \"2024-01-15\",\n  \"receipt\": true,\n  \"description\": \"Weekly groceries from supermarket\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/expenses",
+							"host": ["{{base_url}}"],
+							"path": ["api", "expenses"]
+						}
+					}
+				},
+				{
+					"name": "Create More Expenses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"name\": \"Movie Tickets\",\n    \"amount\": 25,\n    \"category\": \"Entertainment\",\n    \"date\": \"2024-01-14\",\n    \"receipt\": false\n  },\n  {\n    \"name\": \"Gas Station\",\n    \"amount\": 45,\n    \"category\": \"Transport\",\n    \"date\": \"2024-01-13\",\n    \"receipt\": true\n  },\n  {\n    \"name\": \"Coffee Shop\",\n    \"amount\": 8,\n    \"category\": \"Food\",\n    \"date\": \"2024-01-12\",\n    \"receipt\": false\n  }\n]"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/expenses",
+							"host": ["{{base_url}}"],
+							"path": ["api", "expenses"]
+						}
+					}
+				},
+				{
+					"name": "Get All Expenses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/expenses",
+							"host": ["{{base_url}}"],
+							"path": ["api", "expenses"]
+						}
+					}
+				},
+				{
+					"name": "Get Expense Summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/expenses/summary/overview",
+							"host": ["{{base_url}}"],
+							"path": ["api", "expenses", "summary", "overview"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Savings Plan",
+			"item": [
+				{
+					"name": "Add Income",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"Salary\",\n  \"amount\": 5000,\n  \"frequency\": \"Monthly\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/savings/income",
+							"host": ["{{base_url}}"],
+							"path": ["api", "savings", "income"]
+						}
+					}
+				},
+				{
+					"name": "Add Savings Expense",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"category\": \"Rent\",\n  \"perMonth\": 1200\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/savings/expenses",
+							"host": ["{{base_url}}"],
+							"path": ["api", "savings", "expenses"]
+						}
+					}
+				},
+				{
+					"name": "Set Monthly Budget",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"monthlyBudget\": 3000\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/savings/budget",
+							"host": ["{{base_url}}"],
+							"path": ["api", "savings", "budget"]
+						}
+					}
+				},
+				{
+					"name": "Get Savings Summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/savings/summary",
+							"host": ["{{base_url}}"],
+							"path": ["api", "savings", "summary"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Subscriptions",
+			"item": [
+				{
+					"name": "Create Subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Netflix Premium\",\n  \"plan\": \"₹799/month\",\n  \"totalSpend\": 799,\n  \"duration\": \"1 month\",\n  \"recurringPayment\": \"Yes\",\n  \"category\": \"Streaming\",\n  \"color\": \"red\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/subscriptions",
+							"host": ["{{base_url}}"],
+							"path": ["api", "subscriptions"]
+						}
+					}
+				},
+				{
+					"name": "Get All Subscriptions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/subscriptions",
+							"host": ["{{base_url}}"],
+							"path": ["api", "subscriptions"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Get Dashboard Overview",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/overview",
+							"host": ["{{base_url}}"],
+							"path": ["api", "dashboard", "overview"]
+						}
+					}
+				},
+				{
+					"name": "Get Quick Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/quick-stats",
+							"host": ["{{base_url}}"],
+							"path": ["api", "dashboard", "quick-stats"]
+						}
+					}
+				},
+				{
+					"name": "Get Activity Feed",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/activity-feed",
+							"host": ["{{base_url}}"],
+							"path": ["api", "dashboard", "activity-feed"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+} 
